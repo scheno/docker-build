@@ -41,7 +41,7 @@ RUN cd /etc/yum.repos.d/ \
     && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
     # 安装软件包
 RUN yum install -y epel-release \
-    && yum install -y java htop net-tools vim wget zip lsof unzip \
+    && yum install -y java telnet htop net-tools vim wget zip lsof unzip \
     && yum clean all -y \
     # 显示vim行号
     && echo ":set number" > ${USER_HOME}/.vimrc
@@ -54,6 +54,7 @@ RUN wget https://archive.apache.org/dist/rocketmq/${ROCKETMQ_VERSION}/rocketmq-a
     && mkdir -p ${USER_HOME}/console/config \
     && mkdir -p ${USER_HOME}/console/store \
     && mkdir -p ${USER_HOME}/data/logs \
+    && mkdir -p ${USER_HOME}/store/config \
     # 创建软链接
     && ln -s ${USER_HOME}/data/logs ${USER_HOME}/logs \
     && ln -s ${USER_HOME}/data/rocketmq/conf ${ROCKETMQ_HOME}/conf \
